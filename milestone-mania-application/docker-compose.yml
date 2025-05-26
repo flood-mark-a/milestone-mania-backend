@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: milestone_mania
+      POSTGRES_USER: milestone_user
+      POSTGRES_PASSWORD: milestone_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - DATABASE_URL=jdbc:postgresql://postgres:5432/milestone_mania
+      - DATABASE_USERNAME=milestone_user
+      - DATABASE_PASSWORD=milestone_pass
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+
