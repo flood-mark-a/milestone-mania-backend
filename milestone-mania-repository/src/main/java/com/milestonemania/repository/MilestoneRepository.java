@@ -1,12 +1,13 @@
 package com.milestonemania.repository;
 
-import com.milestonemania.model.entity.Milestone;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.milestonemania.model.entity.Milestone;
 
 /**
  * Repository interface for Milestone entities.
@@ -15,50 +16,49 @@ import java.util.List;
 @Repository
 public interface MilestoneRepository extends JpaRepository<Milestone, Long> {
 
-    /**
-     * Finds a random selection of milestones.
-     * Uses database-specific random function for better performance.
-     * 
-     * @param count the number of random milestones to retrieve
-     * @return list of randomly selected milestones
-     */
-    @Query(value = "SELECT * FROM milestones ORDER BY RANDOM() LIMIT :count",
-           nativeQuery = true)
-    List<Milestone> findRandomMilestones(@Param("count") int count);
+  /**
+   * Finds a random selection of milestones.
+   * Uses database-specific random function for better performance.
+   *
+   * @param count the number of random milestones to retrieve
+   * @return list of randomly selected milestones
+   */
+  @Query(value = "SELECT * FROM milestones ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
+  List<Milestone> findRandomMilestones(@Param("count") int count);
 
-    /**
-     * Alternative implementation for databases that don't support RANDOM().
-     * PostgreSQL version - uncomment if using PostgreSQL
-     */
-    // @Query(value = "SELECT * FROM milestones ORDER BY RANDOM() LIMIT :count",
-    //        nativeQuery = true)
-    
-    /**
-     * MySQL version - uncomment if using MySQL
-     */
-    // @Query(value = "SELECT * FROM milestones ORDER BY RAND() LIMIT :count",
-    //        nativeQuery = true)
+  /**
+   * Alternative implementation for databases that don't support RANDOM().
+   * PostgreSQL version - uncomment if using PostgreSQL
+   */
+  // @Query(value = "SELECT * FROM milestones ORDER BY RANDOM() LIMIT :count",
+  //        nativeQuery = true)
 
-    /**
-     * Counts total number of milestones available.
-     * Used to verify sufficient milestones exist for game creation.
-     * 
-     * @return total count of milestones
-     */
-    @Override
-    long count();
+  /**
+   * MySQL version - uncomment if using MySQL
+   */
+  // @Query(value = "SELECT * FROM milestones ORDER BY RAND() LIMIT :count",
+  //        nativeQuery = true)
 
-    /**
-     * Finds milestones containing specific text in title or description.
-     * Useful for search functionality.
-     * 
-     * @param searchTerm the term to search for
-     * @return list of matching milestones
-     */
-    @Query("SELECT m FROM Milestone m WHERE " +
-           "LOWER(m.title) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR " +
-           "LOWER(m.description) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
-    List<Milestone> findByTitleOrDescriptionContainingIgnoreCase(
-        @Param("searchTerm") String searchTerm);
+  /**
+   * Counts total number of milestones available.
+   * Used to verify sufficient milestones exist for game creation.
+   *
+   * @return total count of milestones
+   */
+  @Override
+  long count();
+
+  /**
+   * Finds milestones containing specific text in title or description.
+   * Useful for search functionality.
+   *
+   * @param searchTerm the term to search for
+   * @return list of matching milestones
+   */
+  @Query(
+      "SELECT m FROM Milestone m WHERE "
+          + "LOWER(m.title) LIKE LOWER(CONCAT('%', :searchTerm, '%')) OR "
+          + "LOWER(m.description) LIKE LOWER(CONCAT('%', :searchTerm, '%'))")
+  List<Milestone> findByTitleOrDescriptionContainingIgnoreCase(
+      @Param("searchTerm") String searchTerm);
 }
-

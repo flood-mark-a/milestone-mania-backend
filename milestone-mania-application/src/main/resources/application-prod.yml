@@ -10,7 +10,7 @@ spring:
       connection-timeout: 20000
       idle-timeout: 300000
       max-lifetime: 1200000
-  
+
   jpa:
     hibernate:
       ddl-auto: validate
@@ -26,4 +26,3 @@ logging:
     org.hibernate.SQL: WARN
   file:
     name: logs/milestone-mania.log
-

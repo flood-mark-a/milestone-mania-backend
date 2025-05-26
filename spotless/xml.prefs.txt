@@ -1,0 +1,30 @@
+# Save this file as: spotless/xml.prefs
+# Eclipse XML Formatter Preferences
+
+# General formatting settings
+useTabsForIndent=false
+indentSize=4
+lineWidth=120
+splitMultiAttrs=true
+clearAllBlankLines=false
+formatComments=true
+joinLines=true
+insertWhitespaceBeforeSelfClosingTagSlash=true
+spaceBeforeEmptyCloseTag=true
+
+# Line break settings
+indentUsingTabs=false
+indentSize=4
+tabWidth=4
+
+# XML-specific settings
+xmlSpacePreserveAttribute=xml:space
+xmlSpacePreserveElements=
+indentNamespaceDeclarations=false
+alignEndBracket=false
+preserveWhitespace=false
+
+# Advanced formatting
+formatDocumentRoot=true
+formatXMLDeclaration=true
+insertLineBreakBeforeCloseEmptyElement=false

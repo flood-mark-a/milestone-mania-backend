@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  * <p>
  * Intentionally excludes actualDate to prevent cheating - players must
  * rely on their knowledge to order milestones chronologically.
- * 
+ *
  * @author Milestone Mania Team
  * @version 1.0
  */
@@ -20,20 +20,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MilestoneDto {
 
-    /**
-     * Unique identifier for the milestone.
-     */
-    private Long id;
+  /**
+   * Unique identifier for the milestone.
+   */
+  private Long id;
 
-    /**
-     * Display title of the milestone event.
-     */
-    private String title;
+  /**
+   * Display title of the milestone event.
+   */
+  private String title;
 
-    /**
-     * Detailed description of the milestone event.
-     */
-    private String description;
+  /**
+   * Detailed description of the milestone event.
+   */
+  private String description;
 
-    // Note: actualDate is intentionally excluded to prevent cheating
+  // Note: actualDate is intentionally excluded to prevent cheating
 }

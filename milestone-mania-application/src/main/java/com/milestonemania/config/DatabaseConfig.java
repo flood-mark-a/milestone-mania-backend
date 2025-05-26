@@ -13,6 +13,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(basePackages = "com.milestonemania.repository")
 @EnableTransactionManagement
 public class DatabaseConfig {
-    // Additional database-specific beans can be added here if needed
+  // Additional database-specific beans can be added here if needed
 }
-
